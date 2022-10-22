@@ -32,6 +32,9 @@ public class SimplePlayer : NetworkBehaviour
 
     private void Update()
     {
+        if (!IsLocalPlayer)
+            return;
+        
         var input = GetInput();
         SubmitInputRequestServerRpc(input);
     }

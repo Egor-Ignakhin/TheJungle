@@ -1,9 +1,11 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class SimpleCameraFollower : MonoBehaviour
+public class SimpleCameraFollower : NetworkBehaviour
 {
-    private void Awake()
+    public override void OnNetworkSpawn()
     {
-        Camera.main.transform.SetParent(transform);
+        if(IsLocalPlayer)
+            Camera.main.transform.SetParent(transform);
     }
 }
