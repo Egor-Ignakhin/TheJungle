@@ -15,23 +15,12 @@ public class SimplePlayer : NetworkBehaviour
         if (IsServer)
         {
             Position.Value += (Vector3.right * input.x + Vector3.forward * input.y) * Time.deltaTime;
-            SubmitNewPositionClientRpc();
         }
     }
     
-    [ClientRpc]
-    private void SubmitNewPositionClientRpc()
-    {
-        Move();
-    }
-
-    private void Move()
-    {
-        transform.position = Position.Value;
-    }
-
     private void Update()
     {
+        transform.position = Position.Value;
         if (!IsLocalPlayer)
             return;
         
